@@ -20,6 +20,7 @@ class Login extends StatefulWidget {
   }
 }
 
+
 class _LoginState extends State<Login> {
 @override
 Widget build(BuildContext context) {
@@ -35,13 +36,58 @@ Widget build(BuildContext context) {
                 width: 200,
                 height: 200,
                 child: Image.asset('assets/images/SirakBookings_Logo.png')),
+              TextFormField(
+                decoration: InputDecoration(
+                //  icon: Icon(Icons.person),
+                  border: InputBorder.none,
 
+                  labelText: 'Email *',
+                  fillColor: Colors.white,
+                  filled: true
+                ),
+                onFieldSubmitted: (String value) {
+                  print("login in with " + value + " as an email");
+                },
+              ),
+              //https://www.youtube.com/watch?v=PJU6HFWOM6I&ab_channel=RajaYogan
+              SizedBox(height: 5.0),
+              TextFormField(
+                decoration: InputDecoration(
+                    //icon: Icon(Icons.),
+                    border: InputBorder.none,
+                    labelText: 'Password *',
+
+                   // icon: password
+                    fillColor: Colors.white,
+                    filled: true
+                ),
+                obscureText: true,
+                onFieldSubmitted: (String value) {
+                  print("login in with " + value + " as a password");
+                },
+              ),
+              ElevatedButton(
+               child:
+                  Text("LOG IN"),
+                onPressed: (){
+                 print("button pressed log in");
+                 },
+              ),
+              ElevatedButton(
+                child:
+                  Text("REGISTER"),
+                onPressed: (){
+                  print("button pressed register");
+                }
+              )
             ]
           ),
         )
       ),
+
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
+        color: Colors.red,
         child: Container(height: 50.0,),
       ),
 
@@ -49,46 +95,3 @@ Widget build(BuildContext context) {
     );
   }
 }
-
-
-
-class SirakBookingsLogo extends StatelessWidget {
-  const SirakBookingsLogo({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 343.0,
-      height: 331.0,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            width: 331.0,
-            height: 331.0,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/logo.png'),
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 0,
-            bottom: 54.0,
-            child: Text(
-              'BOOKINGS',
-              style: TextStyle(
-                fontFamily: 'Samsung Sans',
-                fontSize: 53.0,
-                color: Colors.white,
-                letterSpacing: 5.300000000000001,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
