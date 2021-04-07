@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:sirak_bookings/Login_Main.dart';
@@ -33,34 +34,72 @@ class _BookingPageState extends State<BookingPage> {
             children: [
               Container(
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
+                      padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                      height: 180,
                       decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           color: SirakRed,
-                          border: Border.all(color: SirakRed, width: 100),
                           borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(57),
                             bottomLeft: Radius.circular(57),
-                          )
-
-                      ),
-                      child: Container(
-
-                          child: Text("BOOKINGS",
-                            textAlign: TextAlign.left,
-                            maxLines: 1,
-                            style: TextStyle(
-                                letterSpacing: 5,
-                                color: Colors.white,
-                                fontSize: 60,
-                                fontWeight: FontWeight.w700)),
+                          )),
+                      child: Column(
+                        children: [
+                          Container(
+                          //  padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                            child: Text("BOOKINGS",
+                                //textAlign: TextAlign.left,
+                                //   maxLines: 1,
+                                style: TextStyle(
+                                    letterSpacing: 2.5,
+                                    color: Colors.white,
+                                    fontSize: 60,
+                                    fontWeight: FontWeight.w700)),
+                          ),
+                          Expanded(
+                            child: DatePicker(DateTime.now(),
+                               // width: 60,
+                               // height: 80,
+                                controller: _controller,
+                                monthTextStyle: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    color: Colors.black),
+                                dateTextStyle: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.black),
+                                selectionColor: Colors.transparent,
+                                selectedTextColor: Colors.black,
+                                inactiveDates: [
+                                  DateTime.now().add(Duration(days: 3))
+                                ], onDateChange: (date) {
+                              setState(() {
+                                _selectedValue = date;
+                              });
+                            }),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-              Container()
+              Container(
+                child: ListView(
+                  children: [
+                    SizedBox(height: 100,
+                        child: BoxDecoration(
+                      color: Colors.greenAccent
+                    )
+                    ),
+                  ],
+                ),
+              )
             ],
           )),
 
