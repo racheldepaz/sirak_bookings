@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:sirak_bookings/ui-components/LoginScreenButtons.dart';
+import 'package:sirak_bookings/BookingPage.dart';
+import 'nav-components/NavigatorEvents.dart';
 
 var _selectedIndex = 0;
+var SirakRed = const Color(0xFFC2291D);
 
 class LoginPage extends StatelessWidget {
   @override
@@ -53,7 +56,7 @@ class _LoginState extends State<Login> {
                   },
                   bgColor: Colors.grey),
               LoginScreenButtons(
-                label: "REGISTER",
+                label: "CREATE ACCOUNT",
                 onPressed: () {
                   print("button pressed: REGISTER");
                 },
@@ -102,17 +105,13 @@ class _LoginState extends State<Login> {
     }*/
   }
 
-  Future navigateToSubPage(context, page) async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => page));
-  }
 }
 
 class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Colors.black,
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
             child: SafeArea(
                 child: Column(
@@ -120,17 +119,46 @@ class SignInPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
-              alignment: Alignment.topLeft,
+                alignment: Alignment.topLeft,
                 width: 350,
                 height: 200,
                 child: Image.asset('assets/images/SirakBookings_Logo.png')),
-            SizedBox(
-              height: 100
-            ),
-            TextFieldWidget(textInputType: TextInputType.emailAddress, labelText: "Email*", requiredText: "*"),
+            SizedBox(height: 100),
+            TextFieldWidget(
+                textInputType: TextInputType.emailAddress,
+                labelText: "Email *",
+                requiredText: "Your email",
+                ),
 
-            TextFieldWidget(textInputType: TextInputType.emailAddress, labelText: "Password *", requiredText: "*"),
+            PasswordTextFieldWidget(
+                textInputType: TextInputType.text,
+                labelText: "Password *",
+                requiredText: "Password",
+            ),
+            SizedBox(height: 40),
+            Container(
+              
+              alignment: FractionalOffset(0.8, 0.2),
+              child: Transform.rotate(
+                angle: 270 * 3.14/180,
+              child: IconButton(
+                icon: Icon(Icons.arrow_circle_down_rounded, color: Colors.white ),
+                iconSize: 75,
+
+                onPressed: () {
+                  print("arrow pressed");
+                  navigateToSubPage(context, BookingPage()); //ON PRESSED FOR LOGIN
+                },
+              ),
+              ),
+            ),
+
+
           ],
         ))));
   }
 }
+
+
+
+
