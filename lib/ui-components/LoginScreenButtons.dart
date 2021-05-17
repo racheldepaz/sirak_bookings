@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sirak_bookings/CONSTANTS.dart' as constants;
 
 class LoginScreenButtons extends StatelessWidget {
   String label;
@@ -30,6 +31,7 @@ class TextFieldWidget extends StatelessWidget {
   final String labelText;
   final String requiredText;
 
+
   const TextFieldWidget(
       {Key key,
       @required this.textInputType,
@@ -57,13 +59,14 @@ class TextFieldWidget extends StatelessWidget {
               enabledBorder: UnderlineInputBorder(
                   //borderRadius: BorderRadius.circular(32.0),
                   borderSide: BorderSide(color: Colors.white, width: 2))),
-          validator: (String value) {
-            if (value.trim().isEmpty) return "empty"; //VALIDATOR FOR EMAIL
-          }),
+          validator: (value) {
+            if (value.isEmpty)
+              return 'please input an email';
+          },
+          onSaved: (input) =>  constants.email = input ,
+          ),
     );
   }
-
-
 }
 
 class PasswordTextFieldWidget extends StatelessWidget {
@@ -98,7 +101,11 @@ class PasswordTextFieldWidget extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.white, width: 2))),
           validator: (String value) {
             if (value.trim().isEmpty) return "empty"; //VALIDATOR FOR PASSWORD
-          }),
+          },
+      onSaved: (input) =>
+     constants.password = input
+      ,),
+
     );
   }
 
